@@ -15,9 +15,12 @@ const Home = ({ products, bannerData }: Props) => {
 				<p>Speakers of many variations</p>
 			</div>
 			<div className="products-container">
-				{["product 1", "product 2"].map((product) => product)}
+				{products &&
+					products.map((product) => (
+						<Product key={product._id} product={product} />
+					))}
 			</div>
-			<FooterBanner />
+			<FooterBanner footerBanner={bannerData?.length && bannerData[0]} />
 		</div>
 	);
 };

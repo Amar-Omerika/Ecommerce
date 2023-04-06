@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { ProductDataInterface } from "@/types/products";
+import { ProductDataBannerInterface } from "@/types/products";
 
 import { urlFor } from "../lib/client";
 
 interface Props {
-	heroBanner: ProductDataInterface;
+	heroBanner: ProductDataBannerInterface;
 }
 
 const HeroBanner = ({ heroBanner }: Props) => {

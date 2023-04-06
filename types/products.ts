@@ -1,4 +1,4 @@
-export interface ProductDataInterface {
+export interface ProductDataBannerInterface {
 	buttonText: string;
 	desc: string;
 	discount: string;
@@ -10,5 +10,14 @@ export interface ProductDataInterface {
 	saleTime: string;
 	smallText: string;
 	_createdAt: any;
+	_id: string;
+}
+
+export interface ProductDataInterface {
+	details: string;
+	image: any;
+	name: string;
+	price: number;
+	slug: any;
 	_id: string;
 }
