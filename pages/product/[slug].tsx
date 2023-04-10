@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { client, urlFor } from "../../lib/client";
 import { ProductDataInterface } from "@/types/products";
 import { Product } from "@/components";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import {
+	AiFillStar,
+	AiOutlineMinus,
+	AiOutlinePlus,
+	AiOutlineStar,
+} from "react-icons/ai";
+import { useStateContext } from "@/context/StateContext";
 interface Props {
 	product: ProductDataInterface;
 	products: any[];
@@ -10,6 +16,7 @@ interface Props {
 
 const ProductDetails = ({ product, products }: Props) => {
 	const [index, setIndex] = useState(0);
+	const { decreaseQty, increaseQty, qty } = useStateContext();
 	return (
 		<div>
 			<div className="product-detail-container">
@@ -51,11 +58,15 @@ const ProductDetails = ({ product, products }: Props) => {
 					<p className="price">${product.price}</p>
 					<div className="quantity">
 						<h3>Quantity:</h3>
-						{/* <p className="quantity-desc">
-				<span className="minus" onClick={decQty}><AiOutlineMinus /></span>
-				<span className="num">{qty}</span>
-				<span className="plus" onClick={incQty}><AiOutlinePlus /></span>
-			  </p> */}
+						<p className="quantity-desc">
+							<span className="minus" onClick={decreaseQty}>
+								<AiOutlineMinus />
+							</span>
+							<span className="num">{qty}</span>
+							<span className="plus" onClick={increaseQty}>
+								<AiOutlinePlus />
+							</span>
+						</p>
 					</div>
 					{/* <div className="buttons">
 			  <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
@@ -77,23 +88,6 @@ const ProductDetails = ({ product, products }: Props) => {
 		</div>
 	);
 };
-// export async function getStaticPaths() {
-// 	const query = `*[_type == "product"]] {
-// 		slug {
-// 			current
-// 		}
-// 	}`;
-// 	const products = await client.fetch(query);
-// 	const paths = products.map((product: any) => ({
-// 		params: {
-// 			slug: product.slug.current,
-// 		},
-// 	}));
-// 	return {
-// 		paths,
-// 		fallback: "blocking",
-// 	};
-// }
 export const getStaticPaths = async () => {
 	//give me data for product for current slug property
 	const query = `*[_type == "product"] {
