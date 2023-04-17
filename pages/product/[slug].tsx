@@ -16,7 +16,7 @@ interface Props {
 
 const ProductDetails = ({ product, products }: Props) => {
 	const [index, setIndex] = useState(0);
-	const { decreaseQty, increaseQty, qty } = useStateContext();
+	const { decreaseQty, increaseQty, qty, onAdd } = useStateContext();
 	return (
 		<div>
 			<div className="product-detail-container">
@@ -68,10 +68,16 @@ const ProductDetails = ({ product, products }: Props) => {
 							</span>
 						</p>
 					</div>
-					{/* <div className="buttons">
-			  <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
-			  <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button>
-			</div> */}
+					<div className="buttons">
+						<button
+							type="button"
+							className="add-to-cart"
+							onClick={() => onAdd(product, qty)}
+						>
+							Add to Cart
+						</button>
+						{/* <button type="button" className="buy-now" onClick={handleBuyNow}>Buy Now</button> */}
+					</div>
 				</div>
 			</div>
 

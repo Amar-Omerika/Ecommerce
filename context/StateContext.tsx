@@ -3,20 +3,9 @@ import { toast } from "react-hot-toast";
 
 const Context = createContext(null);
 
-// interface MyContextType {
-// 	showCart: boolean;
-// 	setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
-// 	cartItems: any[];
-// 	totalPrice: number;
-// 	totalQuantities: number;
-// 	qty: number;
-// 	setCartItems: React.Dispatch<React.SetStateAction<any[]>>;
-// 	setTotalPrice: React.Dispatch<React.SetStateAction<number>>;
-// 	setTotalQuantities: React.Dispatch<React.SetStateAction<number>>;
-// }
 export const StateContext = ({ children }: any) => {
 	const [showCart, setShowCart] = useState(false);
-	const [cartItems, setCartItems] = useState([]);
+	const [cartItems, setCartItems] = useState<any>([]);
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [totalQuantities, setTotalQuantities] = useState(0);
 	const [qty, setQty] = useState(1);
@@ -32,18 +21,30 @@ export const StateContext = ({ children }: any) => {
 	};
 	const onAdd = (product: any, quantity: number) => {
 		//checking if the product is in the cart
-		const checkProductInCart = cartItems.find((item) => {
+		const checkProductInCart = cartItems.find((item: any) => {
 			item._id === product._id;
 		});
+		setTotalPrice(
+			(prevTotalPrice: number) => prevTotalPrice + product.price * quantity
+		);
+		setTotalQuantities(
+			(prevTotalQuantities: number) => prevTotalQuantities + quantity
+		);
 		//if the product is in the cart update the current product
 		if (checkProductInCart) {
-			setTotalPrice(
-				(prevTotalPrice: number) => prevTotalPrice + product.price * quantity
-			);
-			setTotalQuantities(
-				(prevTotalQuantities: number) => prevTotalQuantities + quantity
-			);
+			const updatedCartItem = cartItems.map((cartProduct: any) => {
+				if (cartProduct._id === product._id)
+					return {
+						...cartProduct,
+						quantity: cartProduct.quantity + quantity,
+					};
+			});
+			setCartItems(updatedCartItem);
+		} else {
+			product.quantity = quantity;
+			setCartItems([...cartItems, { ...product }]);
 		}
+		toast.success(`${quantity} ${product.name} added to the cart`);
 	};
 	return (
 		<Context.Provider
@@ -57,7 +58,7 @@ export const StateContext = ({ children }: any) => {
 					qty,
 					increaseQty,
 					decreaseQty,
-					// onAdd,
+					onAdd,
 					// toggleCartItemQuanitity,
 					// onRemove,
 					setCartItems,
