@@ -105,6 +105,21 @@ export const StateContext = ({ children }: any) => {
 		}
 	};
 
+	const onRemove = (product: any) => {
+		foundIndex = cartItems.findIndex((item: any) => item._id === product._id);
+		foundProduct = cartItems[foundIndex];
+		const newProductsCartArr = [...cartItems];
+		newProductsCartArr.splice(foundIndex, 1);
+		setTotalPrice(
+			(prevTotalPrice) =>
+				prevTotalPrice - foundProduct.price * foundProduct.quantity
+		);
+		setTotalQuantities(
+			(prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity
+		);
+		setCartItems(newProductsCartArr);
+	};
+
 	return (
 		<Context.Provider
 			value={
@@ -119,7 +134,7 @@ export const StateContext = ({ children }: any) => {
 					decreaseQty,
 					onAdd,
 					toggleCartItemQuanitity,
-					// onRemove,
+					onRemove,
 					setCartItems,
 					setTotalPrice,
 					setTotalQuantities,
