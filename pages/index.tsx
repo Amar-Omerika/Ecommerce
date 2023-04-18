@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { client } from "../lib/client";
 import { Product, FooterBanner, HeroBanner } from "@/components";
+import { useStateContext } from "@/context/StateContext";
 
 interface Props {
 	products?: any[];
 	bannerData?: any[];
 }
 const Home = ({ products, bannerData }: Props) => {
+	// const { setQty } = useStateContext();
+	// useEffect(() => {
+	// 	setQty(1);
+	// }, []);
 	return (
 		<div>
 			<HeroBanner heroBanner={bannerData?.length && bannerData[0]} />
