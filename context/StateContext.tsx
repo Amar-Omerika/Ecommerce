@@ -9,7 +9,9 @@ export const StateContext = ({ children }: any) => {
 	const [totalPrice, setTotalPrice] = useState(0);
 	const [totalQuantities, setTotalQuantities] = useState(0);
 	const [qty, setQty] = useState(1);
+	const [theme, setTheme] = useState("light"); // 'light' or 'dark' or any other themes you have
 
+	console.log("Theme", theme);
 	const increaseQty = () => {
 		setQty((prevQty) => prevQty + 1);
 	};
@@ -138,6 +140,8 @@ export const StateContext = ({ children }: any) => {
 					setCartItems,
 					setTotalPrice,
 					setTotalQuantities,
+					setTheme,
+					theme,
 				} as any
 			}
 		>

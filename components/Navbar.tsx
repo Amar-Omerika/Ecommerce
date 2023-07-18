@@ -5,12 +5,20 @@ import { Cart } from "./";
 import { useStateContext } from "@/context/StateContext";
 
 const Navbar = () => {
-	const { showCart, setShowCart, totalQuantities } = useStateContext();
+	const { showCart, setShowCart, totalQuantities, setTheme, theme }: any =
+		useStateContext();
+	const handleThemeChange = () => {
+		setTheme(theme === "light" ? "dark" : "light");
+	};
+	const style = theme === "dark" ? { fontSize: "18px", color: "#fff" } : {};
 	return (
 		<div className="navbar-container">
-			<p className="logo">
-				<Link href="/">JSM Headphones</Link>
+			<p style={style} className="logo">
+				<Link href="/">Ecommerce store</Link>
 			</p>
+			<button type="button" onClick={() => handleThemeChange()}>
+				<span>Changing theme</span>
+			</button>
 			<button
 				type="button"
 				className="cart-icon"

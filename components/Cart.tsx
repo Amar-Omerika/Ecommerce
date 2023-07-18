@@ -22,7 +22,7 @@ const Cart = () => {
 		setShowCart,
 		toggleCartItemQuanitity,
 		onRemove,
-	} = useStateContext();
+	}: any = useStateContext();
 
 	// const handleCheckout = async () => {
 	// 	const stripe = await getStripe();

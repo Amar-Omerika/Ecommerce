@@ -16,7 +16,7 @@ interface Props {
 
 const ProductDetails = ({ product, products }: Props) => {
 	const [index, setIndex] = useState(0);
-	const { decreaseQty, increaseQty, qty, onAdd } = useStateContext();
+	const { decreaseQty, increaseQty, qty, onAdd }: any = useStateContext();
 	return (
 		<div>
 			<div className="product-detail-container">

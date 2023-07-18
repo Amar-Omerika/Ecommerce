@@ -7,6 +7,15 @@ body, * {
   box-sizing: border-box;
 
 }
+.light-theme  {
+  background-color: #fff;
+  padding: 10px;
+}
+
+.dark-theme {
+  background-color: #343a40;
+  padding: 10px;
+}
 ::-webkit-scrollbar {
   width: 0px;
 }
@@ -22,16 +31,16 @@ margin: auto;
 width: 100%;
 
 }
-.layout{
-  padding: 10px;
-}
-
 .navbar-container{
   display: flex;
   justify-content: space-between;
-  margin: 6px 18px;
+  margin-bottom:18px;
   position: relative;
+  margin-left: 18px;
+  margin-right: 18px;
+  padding-top: 6px;
 }
+
 .marquee-text{
   font-size: 29px;
   font-weight: 600;
