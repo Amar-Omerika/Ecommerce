@@ -8,16 +8,17 @@ interface Props {
 	bannerData?: any[];
 }
 const Home = ({ products, bannerData }: Props) => {
-	// const { setQty } = useStateContext();
+	const { theme }: any = useStateContext();
 	// useEffect(() => {
 	// 	setQty(1);
 	// }, []);
+	const style = theme === "dark" ? { color: "#fff" } : {};
 	return (
 		<div>
 			<HeroBanner heroBanner={bannerData?.length && bannerData[0]} />
 			<div className="products-heading">
-				<h2>Best Selling Products</h2>
-				<p>Speakers of many variations</p>
+				<h2 style={style}>Best Selling Products</h2>
+				<p style={style}>Speakers of many variations</p>
 			</div>
 			<div className="products-container">
 				{products &&

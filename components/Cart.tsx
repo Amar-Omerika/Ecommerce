@@ -22,6 +22,7 @@ const Cart = () => {
 		setShowCart,
 		toggleCartItemQuanitity,
 		onRemove,
+		theme,
 	}: any = useStateContext();
 
 	// const handleCheckout = async () => {
@@ -43,29 +44,35 @@ const Cart = () => {
 
 	// 	stripe.redirectToCheckout({ sessionId: data.id });
 	// };
-
+	const style = theme === "dark" ? { backgroundColor: "#343a40" } : {};
+	const textStyle = theme === "dark" ? { color: "#fff" } : {};
 	return (
 		<div className="cart-wrapper" ref={cartRef}>
-			<div className="cart-container">
+			<div className="cart-container" style={style}>
 				<button
 					type="button"
 					className="cart-heading"
 					onClick={() => setShowCart(false)}
 				>
-					<AiOutlineLeft />
-					<span className="heading">Your Cart</span>
-					<span className="cart-num-items">({totalQuantities} items)</span>
+					<AiOutlineLeft style={textStyle} />
+					<span className="heading" style={textStyle}>
+						Your Cart
+					</span>
+					<span className="cart-num-items" style={textStyle}>
+						({totalQuantities} items)
+					</span>
 				</button>
 
 				{cartItems.length < 1 && (
 					<div className="empty-cart">
-						<AiOutlineShopping size={150} />
-						<h3>Your shopping bag is empty</h3>
+						<AiOutlineShopping size={150} style={textStyle} />
+						<h3 style={textStyle}>Your shopping bag is empty</h3>
 						<Link href="/">
 							<button
 								type="button"
 								onClick={() => setShowCart(false)}
 								className="btn"
+								style={textStyle}
 							>
 								Continue Shopping
 							</button>
@@ -83,8 +90,8 @@ const Cart = () => {
 								/>
 								<div className="item-desc">
 									<div className="flex top">
-										<h5>{item.name}</h5>
-										<h4>${item.price}</h4>
+										<h5 style={textStyle}>{item.name}</h5>
+										<h4 style={textStyle}>${item.price}</h4>
 									</div>
 									<div className="flex bottom">
 										<div>
@@ -97,7 +104,7 @@ const Cart = () => {
 												>
 													<AiOutlineMinus />
 												</span>
-												<span className="num" onClick="">
+												<span className="num" onClick="" style={textStyle}>
 													{item.quantity}
 												</span>
 												<span
@@ -125,13 +132,13 @@ const Cart = () => {
 				{cartItems.length >= 1 && (
 					<div className="cart-bottom">
 						<div className="total">
-							<h3>Subtotal:</h3>
-							<h3>${totalPrice}</h3>
+							<h3 style={textStyle}>Subtotal:</h3>
+							<h3 style={textStyle}>${totalPrice}</h3>
 						</div>
 						<div className="btn-container">
-							{/* <button type="button" className="btn" onClick={handleCheckout}>
+							<button type="button" className="btn">
 								Pay with Stripe
-							</button> */}
+							</button>
 						</div>
 					</div>
 				)}

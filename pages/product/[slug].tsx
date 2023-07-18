@@ -16,7 +16,9 @@ interface Props {
 
 const ProductDetails = ({ product, products }: Props) => {
 	const [index, setIndex] = useState(0);
-	const { decreaseQty, increaseQty, qty, onAdd }: any = useStateContext();
+	const { decreaseQty, increaseQty, qty, onAdd, theme }: any =
+		useStateContext();
+	const textstyle = theme === "dark" ? { color: "#fff" } : {};
 	return (
 		<div>
 			<div className="product-detail-container">
@@ -42,7 +44,7 @@ const ProductDetails = ({ product, products }: Props) => {
 				</div>
 
 				<div className="product-detail-desc">
-					<h1>{product.name}</h1>
+					<h1 style={textstyle}>{product.name}</h1>
 					<div className="reviews">
 						<div>
 							<AiFillStar />
@@ -51,18 +53,22 @@ const ProductDetails = ({ product, products }: Props) => {
 							<AiFillStar />
 							<AiOutlineStar />
 						</div>
-						<p>(20)</p>
+						<p style={textstyle}>(20)</p>
 					</div>
-					<h4>Details: </h4>
-					<p>{product.details}</p>
-					<p className="price">${product.price}</p>
-					<div className="quantity">
-						<h3>Quantity:</h3>
-						<p className="quantity-desc">
+					<h4 style={textstyle}>Details: </h4>
+					<p style={textstyle}>{product.details}</p>
+					<p className="price" style={textstyle}>
+						${product.price}
+					</p>
+					<div className="quantity" style={textstyle}>
+						<h3 style={textstyle}>Quantity:</h3>
+						<p className="quantity-desc" style={textstyle}>
 							<span className="minus" onClick={decreaseQty}>
 								<AiOutlineMinus />
 							</span>
-							<span className="num">{qty}</span>
+							<span className="num" style={textstyle}>
+								{qty}
+							</span>
 							<span className="plus" onClick={increaseQty}>
 								<AiOutlinePlus />
 							</span>
@@ -82,7 +88,7 @@ const ProductDetails = ({ product, products }: Props) => {
 			</div>
 
 			<div className="maylike-products-wrapper">
-				<h2>You may also like</h2>
+				<h2 style={textstyle}>You may also like</h2>
 				<div className="marquee">
 					<div className="maylike-products-container track">
 						{products.map((item) => (
