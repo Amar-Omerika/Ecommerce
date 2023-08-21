@@ -35,6 +35,7 @@
 		"webpack": "^5.78.0"
 	},
 	"devDependencies": {
+		"@babel/plugin-proposal-do-expressions": "^7.22.5",
 		"eslint-config-next": "^13.4.19"
 	}
 }
