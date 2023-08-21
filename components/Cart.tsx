@@ -86,7 +86,7 @@ const Cart = () => {
             cartItems.map((item: any) => (
               <div className="product" key={item._id}>
                 <img
-                  src={urlFor(item?.image[0])}
+                  src={String(urlFor(item?.image[0]))} // Convert ImageUrlBuilder to string
                   className="cart-product-image"
                 />
                 <div className="item-desc">
